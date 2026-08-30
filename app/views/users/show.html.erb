@@ -1,0 +1,105 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "logs", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "users", "data-turbo-track": "reload" %>
+<% end %>
+<main>
+  <div class="container">
+
+    <!-- ユーザー情報 -->
+    <div class="user-index-item">
+      <div class="user-top">
+        <div class="user-icon">
+          <img src="/user_images/<%= @user.image %>">
+        </div>
+
+        <h2><%= @user.name %></h2>
+
+        <% if @current_user.id == @user.id || @current_user.id == 1 %>
+          <div class="edit">
+            <%= link_to "編集", "/users/#{@user.id}/edit" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="user-info">
+        <p>GM <%= @logGm.size %>回</p>
+        <p>PL <%= @logPl.size %>回</p>
+        <p>総計 <%= @logAll.size %>回</p>
+      </div>
+    </div>
+
+    <!-- ログ一覧 -->
+    <% @logUser.each do |log| %>
+      <% gm_user = User.find_by(id: log.gm) %>
+      <% system_obj = Sys.find_by(id: log.system) %>
+
+      <div class="session-index-item">
+
+        <!-- GMアイコン -->
+        <div class="gm-icon">
+          <% if gm_user %>
+            <img src="/user_images/<%= gm_user.image %>" alt="GMのアイコン">
+          <% else %>
+            <img src="/user_images/default.png" alt="GMのアイコン">
+          <% end %>
+        </div>
+
+        <div class="session-content">
+
+          <!-- タイトル + システム名 -->
+          <div class="session-title">
+            <h2><%= link_to log.title, "/logs/#{log.id}" %></h2>
+
+            <p>
+              <% if system_obj %>
+                <%= link_to system_obj.name, "/sys/#{log.system}" %>
+              <% else %>
+                不明なシステム
+              <% end %>
+            </p>
+          </div>
+
+          <!-- GM名 -->
+          <div class="gm-box">
+            <p>GM</p>
+            <div class="gm-name">
+              <% if gm_user %>
+                <%= link_to gm_user.name, "/users/#{log.gm}" %>
+              <% else %>
+                不明なGM
+              <% end %>
+            </div>
+          </div>
+
+          <!-- PL一覧 -->
+          <div class="pl-box">
+            <p>PL</p>
+            <div class="pl-list">
+
+              <% [log.pl1, log.pl2, log.pl3, log.pl4, log.pl5, log.pl6].each do |pl_id| %>
+                <% next unless pl_id.present? %>
+                <% pl_user = User.find_by(id: pl_id) %>
+
+                <div class="pl-name">
+                  <% if pl_user %>
+                    <%= link_to pl_user.name, "/users/#{pl_id}" %>
+                  <% else %>
+                    不明なPL
+                  <% end %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+
+          <!-- 日付 -->
+          <div class="time">
+            <p><%= log.date %></p>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</main>

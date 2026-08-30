@@ -1,0 +1,77 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "logs", "data-turbo-track": "reload" %>
+<% end %>
+
+<main>
+  <div class="container">
+
+    <!-- システム情報 -->
+    <div class="session-index-item">
+      <div class="session-title">
+        <h2><%= @sys.name %></h2>
+        <p>このシステムのログ数：<%= Log.where(system: @sys.id).count %></p>
+      </div>
+    </div>
+
+    <!-- ログ一覧 -->
+    <% Log.where(system: @sys.id).each do |log| %>
+      <% gm_user = User.find_by(id: log.gm) %>
+
+      <div class="session-index-item">
+
+        <!-- GMアイコン -->
+        <div class="gm-icon">
+          <% if gm_user %>
+            <img src="/user_images/<%= gm_user.image %>" alt="GMのアイコン">
+          <% else %>
+            <img src="/user_images/default.png" alt="GMのアイコン">
+          <% end %>
+        </div>
+
+        <div class="session-content">
+
+          <!-- タイトル -->
+          <div class="session-title">
+            <h2><%= link_to log.title, "/logs/#{log.id}" %></h2>
+            <p><%= log.date %></p>
+          </div>
+
+          <!-- GM -->
+          <div class="gm-box">
+            <p>GM</p>
+            <div class="gm-name">
+              <% if gm_user %>
+                <%= link_to gm_user.name, "/users/#{log.gm}" %>
+              <% else %>
+                不明なGM
+              <% end %>
+            </div>
+          </div>
+
+          <!-- PL一覧 -->
+          <div class="pl-box">
+            <p>PL</p>
+            <div class="pl-list">
+
+              <% [log.pl1, log.pl2, log.pl3, log.pl4, log.pl5, log.pl6].each do |pl_id| %>
+                <% next unless pl_id.present? %>
+                <% pl_user = User.find_by(id: pl_id) %>
+
+                <div class="pl-name">
+                  <% if pl_user %>
+                    <%= link_to pl_user.name, "/users/#{pl_id}" %>
+                  <% else %>
+                    不明なPL
+                  <% end %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</main>

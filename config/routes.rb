@@ -1,14 +1,40 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "sys/new" => "sys#new"
+  post "sys/create" => "sys#create"
+  get "sys/edit" => "sys#edit"
+  post "sys/update" => "sys/update"
+  post "sys/dstroy" => "sys/destroy"
+  get "sys/index" => "sys#index"
+  get "sys/:id" => "sys#show"
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  post "comments/:log_id/create" => "comments#create"
+  get "comments/:id/destroy" => "comments#destroy"
+  get "comments/:id/edit" => "comments#edit"
+  post "comments/:id/update" => "comments#update"
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  get "users/new" => "users#new"
+  post "users/create" => "users#create"
+  get "users/:id/edit" => "users#edit"
+  post "users/:id/update" => "users#update"
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get "login" => "users#login_form"
+  post "login" => "users#login"
+  get "logout" => "users#logout"
+  
+  get "users/index" => "users#index"
+  get "users/:id" => "users#show"
+
+  get "logs/index" => "logs#index"
+  get "logs/new" => "logs#new"
+  post "logs/create" => "logs#create"
+  post "logs/:id/update" => "logs#update"
+  get "logs/:id/edit" => "logs#edit"
+  post "logs/:id/destroy" => "logs#destroy"
+  get "logs/:id" => "logs#show"
+
+  post "tags/:log_id/create" => "tags#create"
+  get "tags/:id" => "tags#show"
+  
+  get "/" => "home#top"
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

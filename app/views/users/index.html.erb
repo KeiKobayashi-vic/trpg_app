@@ -1,0 +1,41 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "users", "data-turbo-track": "reload" %>
+<% end %>
+
+<main>
+ <div class="index-buttons">
+  <%= link_to "ユーザー登録", "/users/new", class: "index-btn" %>
+  <%= link_to "システム登録", "/sys/new", class: "index-btn" %>
+</div>
+
+  <div class="lists">
+
+    <table class="user-list table-bordered">
+      <caption>ユーザー一覧</caption>
+      <tr>
+        <th>id</th><th>HN</th><th>pass</th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.name, "/users/#{user.id}" %></td>
+          <td>●●●</td>
+        </tr>
+      <% end %>
+    </table>
+
+    <table class="sys-list table-bordered">
+      <caption>システム一覧</caption>
+      <tr>
+        <th>id</th><th>システム</th>
+      </tr>
+      <% @sys.each do |sy| %>
+        <tr>
+          <td><%= sy.id %></td>
+          <td><%= sy.name %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+</main>

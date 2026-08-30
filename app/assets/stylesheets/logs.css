@@ -1,0 +1,216 @@
+p, h2 {
+  margin: 0;
+}
+
+.session-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.session-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.session-index-item {
+  padding: 20px 30px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: 100%;
+  margin: 10px;
+}
+
+.session-index-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* タイトル */
+.session-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.session-title h2 {
+  font-weight: 600;
+}
+
+.session-title h2:hover {
+  color: #3ecdc6;
+}
+
+.session-title p {
+  margin-left: 20px;
+}
+
+/* GMアイコン */
+.gm-icon {
+  float: left;
+  padding-left: 25px;
+  text-align: left;
+}
+
+.gm-icon img {
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  box-shadow: 0 2px 6px #c1ced7;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+/* GM / PL ボックス */
+.gm-box,
+.pl-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.gm-box p,
+.pl-box p {
+  width: 2em;
+}
+
+.gm-name,
+.pl-name {
+  margin-left: 1em;
+}
+
+.pl-list {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 日付 */
+.time {
+  margin-top: 10px;
+}
+
+/* スマホ対応 */
+@media all and (max-width: 670px) {
+  .session-index-item {
+    padding: 5px;
+  }
+
+  .session-title {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 5px;
+  }
+
+  .session-title h2 {
+    font-size: 22px;
+    width: calc(100% - 20px);
+  }
+
+  .gm-icon {
+    padding: 0;
+    margin: 5px;
+  }
+
+  .gm-box,
+  .pl-box {
+    margin-bottom: 5px;
+  }
+
+  .session-title p {
+    margin-left: 0;
+  }
+
+  .pl-list {
+    flex-direction: column;
+  }
+
+  .time {
+    text-align: right;
+    margin-right: 1em;
+  }
+}
+
+/* ===== セッション登録ページ（logs/new） ===== */
+
+.session-new-container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+.session-new-title {
+  background-color: rgba(34, 49, 52, 0.9);
+  color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.session-new-title h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.session-new-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+.session-new-form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.session-new-form input[type="text"],
+.session-new-form input[type="number"],
+.session-new-form select,
+.session-new-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.session-new-form textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.session-new-form .pl-pc-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.session-new-form .pl-pc-box div {
+  flex: 1;
+}
+
+.session-new-submit {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.session-new-submit input[type="submit"] {
+  background-color: rgba(34, 49, 52, 0.9);
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.session-new-submit input[type="submit"]:hover {
+  opacity: 0.85;
+}
+

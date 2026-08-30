@@ -1,10 +1,145 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+@charset "utf-8";
+
+@import "./logs.css";
+@import "./sys.css";
+@import "./users.css";
+@import "./tags.css";
+@import "./comments.css";
+@import "./home.css";
+
+/* Rails 8 Propshaft 用の読み込み */
+
+
+/* 以下は既存の application.css の内容 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
+}
+
+main {
+  margin-top: 70px;
+  background-color: #f0f0f0;
+}
+
+a{
+  text-decoration: none;
+  color: #000;
+}
+
+header a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.container {
+  max-width: 1170px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+header {
+  height: 65px;
+  width: 100%;
+  background-color: rgba(34, 49, 52, 0.9);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.header-left {
+  float: left;
+}
+
+.header-left h1 {
+  font-size: 25px;
+  color: #fff;
+}
+
+.header-right ul {
+  float: right;
+  margin: 0 -10px 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.header-right li {
+  line-height: 65px;
+  padding: 0 10px;
+  color: #fff;
+  display: block;
+  /* transition: all 0.1s; */
+}
+
+.header-right li:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.list-icon {
+  padding-right: 7px;
+}
+
+.menu-icon {
+  display: none;
+  float: right;
+  font-size: 25px;
+  padding: 21px 10px;
+  color: #fff;
+  z-index: 20;
+}
+
+.menu-icon:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+main{
+  margin-top: 65px;
+}
+
+.flash{
+  width: 100%;
+  text-align: center;
+  background-color: orange;
+  margin-top: 65px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+@media all and (max-width: 1000px) {}
+
+@media all and (max-width: 670px) {
+  .header-right ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-right li {
+    padding: 0;
+    border-top: 1px;
+    border-top-style: solid;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .header-right li:active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  header {
+    height: auto;
+  }
+
+  .is-active {
+    display: block;
+  }
+
+}

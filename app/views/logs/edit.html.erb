@@ -1,0 +1,155 @@
+  <% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "logs", "data-turbo-track": "reload" %>
+<% end %>
+<main>
+  <div class="container">
+
+    <!-- 編集フォーム -->
+    <%= form_tag("/logs/#{@log.id}/update") do %>
+      <div class="create">
+        <h2>セッション編集</h2>
+
+        <div class="title-new">
+          <p>シナリオタイトル</p>
+          <input type="text" name="title" value="<%= @log.title %>">
+        </div>
+
+        <div class="system-new">
+          <p>システム</p>
+          <select name="system">
+            <% @sys.each do |sy| %>
+              <% if sy.id.to_s == @log.system.to_s %>
+                <option value="<%= sy.id %>" selected><%= sy.name %></option>
+              <% else %>
+                <option value="<%= sy.id %>"><%= sy.name %></option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="date-new">
+          <p>日付</p>
+          <input type="date" name="date" value="<%= @log.date %>">
+        </div>
+
+        <div class="gm-new">
+          <p>GM</p>
+          <select name="gm">
+            <option></option>
+            <% @lists.each do |list| %>
+              <% if list.id == @log.gm %>
+                <option value="<%= list.id %>" selected><%= list.name %></option>
+              <% else %>
+                <option value="<%= list.id %>"><%= list.name %></option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="pl-new">
+          <p>PL1</p>
+          <select name="pl1" id="">
+            <option value="" selected></option>
+            <% @lists.each do |list| %>
+            <%if list.id == @log.pl1 %>
+              <option value="<%= list.id %>" selected><%= list.name %></option>
+            <% else %>
+              <option value="<%= list.id %>"><%= list.name %></option>
+            <% end %>
+            <% end %>
+          </select>
+          <p>PC1</p>
+          <input type="text" name="pc1" value="<%= @log.pc1 %>">
+        </div>
+        <div class="pl-new">
+          <p>PL2</p>
+          <select name="pl2" id="">
+            <option value="" selected></option>
+            <% @lists.each do |list| %>
+            <%if list.id == @log.pl2 %>
+              <option value="<%= list.id %>" selected><%= list.name %></option>
+            <% else %>
+              <option value="<%= list.id %>"><%= list.name %></option>
+            <% end %>
+            <% end %>
+          </select>
+          <p>PC2</p>
+          <input type="text" name="pc2" value="<%= @log.pc2 %>">
+        </div>
+        <div class="pl-new">
+          <p>PL3</p>
+          <select name="pl3" id="">
+            <option value="" selected></option>
+            <% @lists.each do |list| %>
+            <%if list.id == @log.pl3 %>
+              <option value="<%= list.id %>" selected><%= list.name %></option>
+            <% else %>
+              <option value="<%= list.id %>"><%= list.name %></option>
+            <% end %>
+            <% end %>
+          </select>
+          <p>PC3</p>
+          <input type="text" name="pc3" value="<%= @log.pc3 %>">
+        </div>
+        <div class="pl-new">
+          <p>PL4</p>
+          <select name="pl4" id="">
+            <option value="" selected></option>
+            <% @lists.each do |list| %>
+            <%if list.id == @log.pl4 %>
+              <option value="<%= list.id %>" selected><%= list.name %></option>
+            <% else %>
+              <option value="<%= list.id %>"><%= list.name %></option>
+            <% end %>
+            <% end %>
+          </select>
+          <p>PC4</p>
+          <input type="text" name="pc4" value="<%= @log.pc4 %>">
+        </div>
+        <div class="pl-new">
+          <p>PL5</p>
+          <select name="pl5" id="">
+            <option value="" selected></option>
+            <% @lists.each do |list| %>
+            <%if list.id == @log.pl5 %>
+              <option value="<%= list.id %>" selected><%= list.name %></option>
+            <% else %>
+              <option value="<%= list.id %>"><%= list.name %></option>
+            <% end %>
+            <% end %>
+          </select>
+          <p>PC5</p>
+          <input type="text" name="pc5" value="<%= @log.pc5 %>">
+        </div>
+        <div class="pl-new">
+          <p>PL6</p>
+          <select name="pl6" id="">
+            <option value="" selected></option>
+            <% @lists.each do |list| %>
+            <%if list.id == @log.pl6 %>
+              <option value="<%= list.id %>" selected><%= list.name %></option>
+            <% else %>
+              <option value="<%= list.id %>"><%= list.name %></option>
+            <% end %>
+            <% end %>
+          </select>
+          <p>PC6</p>
+          <input type="text" name="pc6" value="<%= @log.pc6 %>">
+        </div>
+        <p>その他</p>
+        <textarea name="other" cols="30" rows="10"><%= @log.other %></textarea>
+
+        <!-- 編集ボタン（フォーム内） -->
+        <div class="btn-new">
+          <input type="submit" value="編集完了">
+        </div>
+
+      </div>
+    <% end %>
+    <!-- 削除ボタン（フォームの外） -->
+    <div class="btn-delete">
+      <%= button_to "削除", "/logs/#{@log.id}/destroy", method: :post, data: { confirm: "本当に削除しますか？" } %>
+    </div>
+
+  </div>
+</main>

@@ -1,0 +1,18 @@
+
+.system-index-item{
+  padding: 20px 30px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.system-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: dashed 2px #000;
+}

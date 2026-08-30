@@ -1,0 +1,124 @@
+  <% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "logs", "data-turbo-track": "reload" %>
+<% end %>
+<main>
+  <div class="container">
+    <div class="session-log">
+
+      <!-- タイトル + 編集ボタン -->
+      <div class="session-date">
+        <div class="title-edit">
+          <div class="title"><%= @log.title %></div>
+          <div class="log-edit">
+            <%= link_to("編集", "/logs/#{@log.id}/edit") %>
+          </div>
+        </div>
+
+        <!-- システム名 + 日付 -->
+        <div class="system-time">
+          <div class="system">
+            <% sys = Sys.find_by(id: @log.system) %>
+            <%= link_to(sys ? sys.name : "不明なシステム", "/sys/#{@log.system}") %>
+          </div>
+          <div class="time"><%= @log.date %></div>
+        </div>
+      </div>
+
+      <!-- タグ一覧 -->
+      <div class="show-tag">
+        <% if @tags.present? %>
+          <% @tags.each do |tag| %>
+            <%= link_to(tag.name, "/tags/#{tag.id}") %>
+          <% end %>
+        <% end %>
+
+        <%= form_tag("/tags/#{@log.id}/create") do %>
+          <input type="text" name="tag" class="tag-new">
+          <input type="submit" value="追加">
+        <% end %>
+      </div>
+
+      <!-- GM -->
+      <p>GM</p>
+      <div class="gm-data">
+        <% gm_user = User.find_by(id: @log.gm) %>
+        <% if gm_user %>
+          <img src="/user_images/<%= gm_user.image %>" alt="GMのアイコン">
+          <p><%= link_to(gm_user.name, "/users/#{gm_user.id}") %></p>
+        <% else %>
+          <p>GM情報なし</p>
+        <% end %>
+      </div>
+
+      <!-- PL/PC -->
+      <p>PL／PC</p>
+      <div class="plpc-list">
+
+        <% [[@log.pl1, @log.pc1], [@log.pl2, @log.pc2], [@log.pl3, @log.pc3],
+            [@log.pl4, @log.pc4], [@log.pl5, @log.pc5], [@log.pl6, @log.pc6]].each do |pl_id, pc_name| %>
+
+          <% if pl_id.present? %>
+            <% pl_user = User.find_by(id: pl_id) %>
+            <% if pl_user %>
+              <div class="pl-show">
+                <img src="/user_images/<%= pl_user.image %>" alt="">
+                <p><%= link_to(pl_user.name, "/users/#{pl_user.id}") %></p>
+                <p class="pc"><%= pc_name %></p>
+              </div>
+            <% end %>
+          <% end %>
+
+        <% end %>
+
+      </div>
+
+      <!-- その他 -->
+      <div class="other">
+        <p>その他</p>
+        <p><%= @log.other %></p>
+      </div>
+
+    </div>
+
+    <!-- コメント一覧 -->
+    <div class="comments">
+      <h2>コメント</h2>
+
+      <% @comments.each do |comment| %>
+        <% user = User.find_by(id: comment.user_id) %>
+
+        <div class="comment">
+          <% if user %>
+            <img src="/user_images/<%= user.image %>" alt="">
+          <% end %>
+
+          <div class="comment-item">
+            <div class="comment-upper">
+              <div class="comment-user"><%= user ? user.name : "不明ユーザー" %></div>
+
+              <div class="comment-edit">
+                <% if @current_user.id == comment.user_id || @current_user.id == 1 %>
+                  <%= link_to("編集", "/comments/#{comment.id}/edit") %>
+                  <%= link_to("削除", "/comments/#{comment.id}/destroy") %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="comment-text"><%= comment.content %></div>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+
+    <!-- コメント投稿フォーム -->
+    <%= form_tag("/comments/#{@log.id}/create") do %>
+      <div class="comment-form">
+        <p>コメント投稿（140文字まで）</p>
+        <textarea class="comment-input" name="content"><%= @content %></textarea>
+        <input type="submit" value="投稿" maxlength="140">
+      </div>
+    <% end %>
+
+  </div>
+</main>

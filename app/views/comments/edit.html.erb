@@ -1,0 +1,13 @@
+<main>
+  <%= form_tag("/comments/#{@comment.id}/update") do %>
+    <div class="comment-form">
+      <p>コメント編集（140文字まで）</p>
+
+      <textarea class="comment-input"
+                name="content"
+                maxlength="140"><%= @comment.content %></textarea>
+
+      <input type="submit" value="編集">
+    </div>
+  <% end %>
+</main>
