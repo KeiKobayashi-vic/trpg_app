@@ -1,3 +1,4 @@
+/* index用 */
 p, h2 {
   margin: 0;
 }
@@ -20,9 +21,6 @@ p, h2 {
   box-shadow: 0 2px 6px #c1ced7;
   width: 100%;
   margin: 10px;
-}
-
-.session-index-item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -136,81 +134,214 @@ p, h2 {
 
 /* ===== セッション登録ページ（logs/new） ===== */
 
-.session-new-container {
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 20px 15px;
-}
-
-.session-new-title {
-  background-color: rgba(34, 49, 52, 0.9);
-  color: #fff;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-}
-
-.session-new-title h2 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.session-new-form {
+.create {
+  padding: 20px 30px;
   background-color: #fff;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: calc(100% - 20px);
+  margin: 10px;
+  font-size: 20px;
 }
 
-.session-new-form label {
-  display: block;
-  font-weight: bold;
-  margin-top: 15px;
+.create > div {
+  display: flex;
+  flex-direction: row;
   margin-bottom: 5px;
 }
 
-.session-new-form input[type="text"],
-.session-new-form input[type="number"],
-.session-new-form select,
-.session-new-form textarea {
+.text-width {
+  width: 2em;
+}
+
+.gm-new input {
+  width: 200px;
+}
+
+.pl-new {
+  width: 200px;
+  margin-right: 1em;
+}
+
+.pc-new {
+  margin-left: 5px;
+  width: 50%;
+}
+
+.title-new input {
+  height: 30px;
+  width: 500px;
+}
+
+.title-new p,
+.system-new p {
+  width: 9em;
+}
+
+.date-new input {
+  width: 200px;
+}
+
+.create textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
 }
 
-.session-new-form textarea {
-  height: 120px;
-  resize: vertical;
-}
+/* ===== show用 ===== */
 
-.session-new-form .pl-pc-box {
+.session-log {
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
+  flex-direction: column;
 }
 
-.session-new-form .pl-pc-box div {
-  flex: 1;
+.session-date {
+  padding: 20px 30px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: calc(100% - 20px);
+  margin: 10px;
+  font-size: 20px;
 }
 
-.session-new-submit {
-  margin-top: 25px;
-  text-align: center;
+.title {
+  font-size: 25px;
+  font-weight: 600;
 }
 
-.session-new-submit input[type="submit"] {
-  background-color: rgba(34, 49, 52, 0.9);
+.session-date img {
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  box-shadow: 0 2px 6px #c1ced7;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.title-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.system-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 0 20px 0;
+  margin-bottom: 5px;
+}
+
+.show-tag {
+  border-bottom: dashed 2px #000;
+}
+
+.gm-data {
+  display: flex;
+  flex-direction: row;
+  border-bottom: dashed 2px #000;
+  padding-bottom: 20px;
+  margin-bottom: 5px;
+}
+
+.pl-show {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.plpc-list {
+  border-bottom: dashed 2px #000;
+}
+
+.pc {
+  margin-left: 2em;
+}
+
+.comments {
+  padding: 20px 30px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: calc(100% - 20px);
+  margin: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-bottom: dashed 2px #000;
+}
+
+.comment img {
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  box-shadow: 0 2px 6px #c1ced7;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.comment-item {
+  display: flex;
+  flex-direction: column;
+  flex-basis: calc(100% - 250px);
+}
+
+.comment-form {
+  padding: 20px 30px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  margin: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form textarea {
+  font-size: 20px;
+  padding: 10px;
+  min-height: 140px;
+  border: 1px solid rgb(216, 218, 223);
+  resize: none;
+}
+
+.comment-form input {
+  font-size: 24px;
+  background-color: #5dca88;
   color: #fff;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  box-shadow: 0 5px #1a7940;
+  border-radius: 4px;
+  border: 0;
+  opacity: 0.8;
   cursor: pointer;
+  width: 200px;
+  margin: 10px 0 0 auto;
 }
 
-.session-new-submit input[type="submit"]:hover {
-  opacity: 0.85;
+.comment-form input:hover {
+  opacity: 1;
 }
 
+.comment-form input:active {
+  position: relative;
+  top: 5px;
+  box-shadow: none;
+}
+
+.comment-upper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media all and (max-width: 670px) {
+  .comment-form input {
+    width: 100%;
+  }
+}

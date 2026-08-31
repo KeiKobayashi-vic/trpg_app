@@ -1,21 +1,17 @@
-directory '/home/ubuntu/trpg_app'
+# 開発専用 Puma 設定
 
+# ポート指定（rails s と同じ）
+port ENV.fetch("PORT") { 3000 }
 
-
-threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
-
+# スレッド数（開発は低負荷でOK）
+threads_count = ENV.fetch("RAILS_MAX_THREADS", 5)
 threads threads_count, threads_count
 
+# 環境は development 固定
+environment ENV.fetch("RAILS_ENV") { "development" }
 
+# workers は使わない（development は単一プロセスで十分）
+workers 0
 
-bind 'unix:///home/ubuntu/trpg_app/tmp/sockets/puma.sock'
-
-
-
-pidfile '/home/ubuntu/trpg_app/tmp/pids/puma.pid'
-
-state_path '/home/ubuntu/trpg_app/tmp/pids/puma.state'
-
-
-
+# Rails の restart コマンド対応
 plugin :tmp_restart

@@ -1,4 +1,4 @@
-  <% content_for :stylesheets do %>
+<% content_for :stylesheets do %>
   <%= stylesheet_link_tag "logs", "data-turbo-track": "reload" %>
 <% end %>
 <main>
@@ -22,7 +22,6 @@
           </div>
           <div class="time"><%= @log.date %></div>
         </div>
-      </div>
 
       <!-- タグ一覧 -->
       <div class="show-tag">
@@ -43,7 +42,9 @@
       <div class="gm-data">
         <% gm_user = User.find_by(id: @log.gm) %>
         <% if gm_user %>
+        <div class="gm-icon">
           <img src="/user_images/<%= gm_user.image %>" alt="GMのアイコン">
+        </div>
           <p><%= link_to(gm_user.name, "/users/#{gm_user.id}") %></p>
         <% else %>
           <p>GM情報なし</p>
@@ -61,7 +62,9 @@
             <% pl_user = User.find_by(id: pl_id) %>
             <% if pl_user %>
               <div class="pl-show">
+                <div class="gm-icon">
                 <img src="/user_images/<%= pl_user.image %>" alt="">
+                </div>
                 <p><%= link_to(pl_user.name, "/users/#{pl_user.id}") %></p>
                 <p class="pc"><%= pc_name %></p>
               </div>
@@ -79,7 +82,7 @@
       </div>
 
     </div>
-
+    </div>
     <!-- コメント一覧 -->
     <div class="comments">
       <h2>コメント</h2>
